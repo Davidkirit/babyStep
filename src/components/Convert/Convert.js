@@ -1,44 +1,60 @@
 import React, { useState } from "react";
 import "./Convert.css";
+import { FaPaperPlane } from "react-icons/fa";
 
 const Convert = () => {
-  const [pdfConverter, setPdfConvert] = useState(null);
   const [file, setFile] = useState(null);
+  const [summary, setSummary] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const fileIsConverting = (event) => {
-    const file = event.target.files[0];
-    if (file && file.type === "application/pdf") {
-      setPdfConvert(file);
+    const selectedFile = event.target.files[0];
+    if (selectedFile && selectedFile.type === "application/pdf") {
+      setFile(selectedFile);
     } else {
-      alert("Upload a PDF file");
+      alert("Please upload a valid PDF file.");
     }
-    setFile(file);
   };
 
-  const onButton = () => {
+  const onButton = async () => {
+    if (!file) {
+      alert("Please upload a PDF file first.");
+      return;
+    }
+
+    setLoading(true);
     const formData = new FormData();
     formData.append("file", file);
-    // console.log(formData);
 
-    const response = fetch("https://babystepapi.onrender.com/genai", {
-      method: "POST",
-      body: formData,
-    });
+    try {
+      const response = await fetch("https://babystep.onrender.com//genai", {
+        method: "POST",
+        body: formData,
+      });
+      const data = await response.json();
+      setSummary(data.result);
+    } catch (error) {
+      console.error("Fetch error:", error);
+    } finally {
+      setLoading(false);
+    }
   };
+
   return (
-    <div className="pdf-body">
-      <div className="pdf-container">
-        <p className="pdf-description"> Learn more about your pdf </p>
-        <div>
+    <div className="chat-container">
+      <div className="chat-box">
+        <div className="chat-messages">
+          {summary && <div className="chat-message bot">{summary}</div>}
+        </div>
+        <div className="chat-input-container">
           <input
-            className="pdf-input"
             type="file"
             accept="application/pdf"
             onChange={fileIsConverting}
+            className="file-input"
           />
-          {pdfConverter && <p>Uploaded : {pdfConverter.name}</p>}
-          <button className="gen-btn" onClick={onButton}>
-            Generate Questions
+          <button className="send-btn" onClick={onButton} disabled={loading}>
+            {loading ? "Processing..." : <FaPaperPlane />}
           </button>
         </div>
       </div>
