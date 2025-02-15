@@ -21,9 +21,9 @@ const RegisterForm = () => {
       alert("Passwords do not match!");
       return;
     }
-    console.log("Registering:", formData);
+    // console.log("Registering:", formData);
     setTimeout(() => {
-      console.log("user registered:", formData);
+      // console.log("user registered:", formData);
       navigate("/convert");
     }, 1000);
     fetch("https://babystepapi.onrender.com/register", {
