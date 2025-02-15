@@ -1,0 +1,51 @@
+.pdf-body {
+  font-family: "Arial", sans-serif;
+  background-color: #1d79d6;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(45deg, #d1d1e0, #0d1117);
+  text-align: center;
+}
+
+.pdf-container {
+  background: white;
+  padding: 40px;
+  max-width: 600px;
+  text-align: center;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.pdf-description {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.gen-btn {
+  display: inline-block;
+  padding: 12px 20px;
+  font-size: 18px;
+  background: #23be26;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background 0.3s ease-in-out;
+}
+
+.gen-btn:hover {
+  background: #5fd651;
+  transform: scale(1.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .pdf-container {
+    width: 90%;
+    padding: 30px;
+  }
+}
