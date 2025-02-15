@@ -26,7 +26,7 @@ const RegisterForm = () => {
       console.log("user registered:", formData);
       navigate("/convert");
     }, 1000);
-    fetch("http://localhost:4000/register", {
+    fetch("https://babystepapi.onrender.com/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

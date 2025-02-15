@@ -20,7 +20,7 @@ const Convert = () => {
     formData.append("file", file);
     // console.log(formData);
 
-    const response = fetch("http://localhost:4000/genai", {
+    const response = fetch("https://babystepapi.onrender.com/genai", {
       method: "POST",
       body: formData,
     });
