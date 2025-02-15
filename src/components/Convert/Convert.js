@@ -27,7 +27,7 @@ const Convert = () => {
     formData.append("file", file);
 
     try {
-      const response = await fetch("https://babystep.onrender.com/genai", {
+      const response = await fetch("https://babystepapi.onrender.com/genai", {
         method: "POST",
         body: formData,
       });
